@@ -1,0 +1,12 @@
+{
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "type": "object",
+    "properties": {
+        "about_hero_url" : { "type": ["string", "null"]},
+        "about_section_title": { "type": ["string", "null"]},
+        "about_hero_caption": { "type": ["string", "null"]},
+        "about_description_primary": { "type": ["string", "null"]},
+        "about_description_secondary": { "type": ["string", "null"]}
+    },
+    "additionalProperties": true
+}

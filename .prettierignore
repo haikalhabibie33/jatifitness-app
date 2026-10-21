@@ -1,0 +1,44 @@
+# CodeIgniter / PHP app
+app/
+public/
+writable/
+vendor/
+
+# Build / generated output
+build/
+builds/
+playwright-report/
+test-results/
+coverage/
+
+# Node
+node_modules/
+
+# Tests outside Playwright e2e
+tests/
+
+# GitHub config
+.github/
+
+# Environment files
+.env
+.env-development
+.env-production
+.env.ci
+
+# Debug screenshots
+before-*.png
+after-*.png
+
+# PHP / backend config files
+composer.json
+composer.lock
+docker-compose.yml
+phpunit.xml.dist
+psalm.xml
+preload.php
+spark
+
+# Docs / misc
+README.md
+LICENSE

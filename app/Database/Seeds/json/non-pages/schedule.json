@@ -1,0 +1,44 @@
+[
+    {
+        "day": "Saturday",
+        "time": "6am - 8am",
+        "activity": "Kick Boxing",
+        "trainer": "Alex Travis"
+    },
+    {
+        "day": "Sunday",
+        "time": "6am - 8am",
+        "activity": "Zumba",
+        "trainer": "Marina Laurel"
+    },
+    {
+        "day": "Monday",
+        "time": "6am - 8am",
+        "activity": "Muay Thai",
+        "trainer": "Chris Balder"
+    },
+    {
+        "day": "Tuesday",
+        "time": "6am - 8am",
+        "activity": "Kick Boxing",
+        "trainer": "Alex Travis"
+    },
+    {
+        "day": "Wednesday",
+        "time": "6am - 8am",
+        "activity": "Zumba",
+        "trainer": "Marina Laurel"
+    },
+    {
+        "day": "Thursday",
+        "time": "6am - 8am",
+        "activity": "Yoga",
+        "trainer": "Jennifer O'Keeffe"
+    },
+    {
+        "day": "Friday",
+        "time": "6am - 8am",
+        "activity": "Aerobic",
+        "trainer": "Sienna Nevada"
+    }
+]

@@ -1,0 +1,8 @@
+{
+    "waitingForApproval": "Waiting for Approval",
+    "readyForPayment": "Ready for Payment",
+    "awaitingPayment": "Awaiting Payment",
+    "paymentReceived": "Payment Received",
+    "paymentCompleted": "Completed",
+    "requestRejected": "Rejected"
+}

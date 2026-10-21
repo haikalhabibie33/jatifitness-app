@@ -1,0 +1,22 @@
+{
+    "regular": {
+        "membership_plan": "2",
+        "target_type": "REGULAR",
+        "name": "John Doe",
+        "phone":"087267162543",
+        "email":"johndoe@example.com",
+        "gender": "MALE",
+        "date_of_birth": "1990-01-01",
+        "address": "Montana Avenue, Santa Monica"
+    },
+    "student": {
+        "membership_plan": "7",
+        "target_type": "STUDENT",
+        "name": "John Doe",
+        "phone":"087267162543",
+        "email":"johndoe@example.com",
+        "gender": "MALE",
+        "date_of_birth": "1990-01-01",
+        "address": "Montana Avenue, Santa Monica"
+    }
+}

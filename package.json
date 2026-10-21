@@ -1,0 +1,50 @@
+{
+  "name": "gym-app",
+  "version": "1.0.0",
+  "description": "==== Cara Execute Program Aplikasi====",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "imports": {
+    "#data/*": "./e2e/data/*",
+    "#fixtures/*": "./e2e/fixtures/*",
+    "#pages/*": "./e2e/pages/*",
+    "#types/*": "./e2e/types/*",
+    "#utils/*": "./e2e/utils/*"
+  },
+  "scripts": {
+    "pretest": "tsc --incremental -p tests/tsconfig.json",
+    "lint": "eslint e2e",
+    "lint-fix": "eslint e2e --fix",
+    "format": "prettier \"e2e/**/*.ts\" --write",
+    "format:check": "prettier \"e2e/**/*.ts\" --check"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akhmad-n421/gym-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/akhmad-n421/gym-app/issues"
+  },
+  "homepage": "https://github.com/akhmad-n421/gym-app#readme",
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@playwright/test": "^1.60.0",
+    "@types/node": "^25.7.0",
+    "eslint": "^10.8.0",
+    "eslint-config-prettier": "^10.1.8",
+    "globals": "^17.9.0",
+    "jiti": "^2.7.0",
+    "prettier": "3.9.6",
+    "typescript-eslint": "^8.65.0"
+  },
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "mysql2": "^3.22.3"
+  }
+}

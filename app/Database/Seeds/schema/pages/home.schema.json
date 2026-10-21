@@ -1,0 +1,11 @@
+{
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "type": "object",
+    "properties": {
+        "home_logo_url" : { "type": ["string", "null"]},
+        "home_owner_name": { "type": ["string", "null"]},
+        "home_hero_caption": { "type": ["string", "null"]},
+        "home_youtube_url": { "type": ["string", "null"]}
+    },
+    "additionalProperties": true
+}

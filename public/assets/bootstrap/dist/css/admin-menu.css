@@ -1,0 +1,259 @@
+/* 1) Paksa warna aktif nav-pills menjadi merah (full override) */
+.admin-sidebar .nav.nav-pills .nav-link.active,
+.admin-sidebar .nav.nav-pills .show > .nav-link {
+  /* full merah tanpa kebiruan */
+  background: linear-gradient(
+    90deg,
+    rgba(255, 19, 19, 0.90),
+    rgba(255, 19, 19, 0.80)
+  ) !important;
+  color: #fff !important;
+  border-color: rgba(255, 19, 19, 0.95) !important;
+  /* hapus bayangan biru bawaan jika ada */
+  box-shadow: none;
+}
+
+/* 2) Tambahkan glow merah (opsional, bisa kamu atur opacity-nya) */
+.admin-sidebar .nav.nav-pills .nav-link.active {
+  box-shadow:
+    0 0 0 1px rgba(255, 19, 19, 0.55) inset,
+    0 6px 18px rgba(255, 19, 19, 0.35) !important;
+}
+
+/* 3) Indikator bar merah di kiri (jika kamu suka efek bar) */
+.admin-sidebar .nav.nav-pills .nav-link.active::before {
+  content: "";
+  position: absolute;
+  left: -12px;
+  top: 8px;
+  bottom: 8px;
+  width: 4px;
+  border-radius: 4px;
+  background: linear-gradient(180deg, #ff4a4a, #ff1313);
+  box-shadow: 0 0 12px rgba(255, 19, 19, 0.8);
+}
+
+/* 4) Warna ikon ikut putih/merah muda saat aktif */
+.admin-sidebar .nav.nav-pills .nav-link.active i {
+  color: #ffe8e8 !important;
+  text-shadow: 0 0 8px rgba(255, 60, 60, 0.6);
+}
+
+/* 5) State biasa & hover (biar konsisten merah, bukan biru) */
+.admin-sidebar .nav.nav-pills .nav-link {
+  position: relative;
+  color: #c9d1d9;
+  border-radius: .5rem;
+  padding: .55rem .75rem;
+  transition: all .2s ease;
+  background: transparent;
+}
+
+.admin-sidebar .nav.nav-pills .nav-link:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+}
+
+.admin-content {
+  min-height: 100svh;  
+  min-height: 100dvh;
+  min-height: 100vh;
+  background:
+      linear-gradient(0deg, rgba(0,0,0,.45), rgba(0,0,0,.45));
+}
+
+th[data-sort] {
+  cursor: pointer;
+}
+th.asc::after {
+  content: " ▲";
+}
+th.desc::after {
+  content: " ▼";
+}
+
+.kpi-card {
+    border-radius: 16px;
+    color: #fff !important;
+    position: relative;
+    overflow: hidden;
+    background-clip: padding-box;
+}
+
+.kpi-card .card-body {
+    background: transparent !important;
+    padding: 24px;
+    position: relative;
+    z-index: 2;
+}
+
+.kpi-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.15;
+    background: radial-gradient(circle at top right, #fff, transparent 60%);
+}
+
+.kpi-icon {
+    position: absolute;
+    right: 18px;
+    top: 18px;
+    font-size: 3.2rem;
+    opacity: 0.35;
+    z-index: 1;
+}
+
+/* COLOR VARIANTS */
+.kpi-green {
+    background: linear-gradient(135deg, #2ecc71, #1e8449);
+}
+
+.kpi-blue {
+    background: linear-gradient(135deg, #3498db, #1f618d);
+}
+
+.kpi-orange {
+    background: linear-gradient(135deg, #f39c12, #d68910);
+}
+
+.kpi-red {
+    background: linear-gradient(135deg, #e74c3c, #922b21);
+}
+
+.kpi-card h3 {
+    font-size: 2.4rem;
+    font-weight: 800;
+    margin: 4px 0 6px;
+}
+
+.kpi-card small {
+    font-size: 0.85rem;
+    opacity: 0.95;
+}
+
+/* COLLAPSIBLE SECTION */
+.collapsible-section {
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    background: #fff;
+    margin-bottom: 16px;
+    overflow: hidden;
+}
+
+/* HEADER */
+.collapsible-header {
+    padding: 14px 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.collapsible-header:hover {
+    background: #f5f7fa;
+}
+
+/* TITLE */
+.collapsible-header .title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+}
+
+/* ARROW */
+.collapsible-header .arrow {
+    transition: transform 0.25s ease;
+}
+
+/* CONTENT */
+
+.collapsible-content {
+    height: 0;
+    overflow: hidden;
+    transition: height 0.35s ease;
+}
+
+.collapsible-inner {
+    padding: 1.25rem;
+}
+
+.collapsible-section.active .arrow {
+    transform: rotate(180deg);
+}
+
+#qr-reader {
+  width: 100%;
+  max-width: 500px;
+  height: 300px;
+  margin: auto;
+  position: relative;
+}
+
+#qr-reader video {
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+#scanner-wrapper {
+  position: relative;
+}
+
+/* ✅ NORMAL VIEW */
+#qrCode img {
+  width: 180px;
+  height: 180px;
+}
+
+/* CENTER */
+#qrWrapper {
+  display: flex;
+  justify-content: center;
+}
+
+/* BIG QR */
+#qrCode img {
+  width: 400px;
+  height: 400px;
+  max-width: 90vw;
+}
+
+/* BUTTONS */
+/* .action-group {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  margin-top: 20px;
+}
+
+.action-group .btn {
+  width: auto !important;
+  padding: 12px 20px;
+} */
+
+/* PRINT */
+@media print {
+
+  @page {
+    size: A4;
+    margin: 20mm;
+  }
+
+  #qrCode img {
+    width: 400px !important;
+    height: auto !important;
+  }
+  /* MOBILE */
+  @media (max-width: 576px) {
+    #qrCode img {
+      width: 280px;   /* 🔥 ukuran enak di HP */
+    }
+  }
+
+  button, a {
+    display: none !important;
+  }
+
+}

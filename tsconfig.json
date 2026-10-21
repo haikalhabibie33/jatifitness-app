@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "node16",
+    "moduleResolution": "node16",
+    "sourceMap": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "strict": false,
+    "ignoreDeprecations": "6.0",
+    "types": ["node"],   
+    "baseUrl": ".",
+        "paths": {
+          "#pages/*": ["e2e/pages/*"],
+          "#utils/*": ["e2e/utils/*"],
+          "#types/*": ["e2e/types/*"],
+          "#fixtures/*": ["e2e/fixtures/*"],
+          "#data/*": ["e2e/data/*"]
+        }
+
+  },
+  "include": [
+    "playwright.config.ts",
+    "e2e/**/*.ts",
+    "e2e/**/*.json"
+  ]
+}

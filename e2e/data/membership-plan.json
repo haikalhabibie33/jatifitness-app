@@ -1,0 +1,19 @@
+{
+    "addPlan": {
+        "code": "TEST",
+        "planName": "Promo Ramadhan Test",
+        "duration": "28",
+        "price": "100000",
+        "dailyLimit": "1",
+        "description": "Test Only"
+    },
+
+    "editPlan": {
+        "code": "TEST",
+        "planName": "Promo Ramadhan 30-days Test",
+        "duration": "30",
+        "price": "200000",
+        "dailyLimit": "3",
+        "description": "edited Test Only"
+    }
+}

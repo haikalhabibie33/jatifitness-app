@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": [
+      "code",
+      "name",
+      "price",
+      "duration_days",
+      "access_type",
+      "is_active",
+      "target_member_type"
+    ],
+    "properties": {
+      "code": {
+        "type": "string",
+        "description": "Unique plan code, e.g. REG_DAILY"
+      },
+      "name": {
+        "type": "string"
+      },
+      "price": {
+        "type": "number",
+        "minimum": 0
+      },
+      "duration_days": {
+        "type": "integer",
+        "minimum": 1
+      },
+      "is_active": {
+        "type": "boolean"
+      },
+      "description": {
+        "type": "string"
+      },
+      "target_member_type": {
+        "type": "string",
+        "enum": ["REGULAR", "STUDENT"]
+      }
+    },
+    "additionalProperties": false
+  }
+}

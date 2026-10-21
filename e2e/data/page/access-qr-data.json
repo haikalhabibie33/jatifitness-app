@@ -1,0 +1,11 @@
+{
+    "accessCodeName": {
+        "casual": "Your Gym Access QR",
+        "member": "Membership Access QR"
+    },
+    "accessCodeInformation": {
+        "casual": "Present this QR code at the gym entrance to activate your access.",
+        "member": "Use this QR code to check in at the gym entrance."
+    },
+    "accessCodeNotFound": "Access code not found. Please contact support."
+}

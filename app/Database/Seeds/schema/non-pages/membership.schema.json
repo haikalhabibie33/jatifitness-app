@@ -1,0 +1,19 @@
+{
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "type": "array",
+    "items": {
+        "type": "object",
+        "properties": {
+            "name": {"type":"string"},
+            "gender": {"type": "string"},
+            "phone": {"type": "string"},
+            "email": {"type": "string"},
+            "address": {"type": "string"},
+            "status": {"type": "string"},
+            "start_date": {"type": "string", "format": "date"},
+            "end_date": {"type": "string", "format": "date"}
+        },
+        "required": ["name", "gender", "phone", "email", "address", "status", "start_date", "end_date"],
+        "additionalProperties": true
+    }
+}

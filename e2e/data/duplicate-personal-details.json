@@ -1,0 +1,26 @@
+{
+    "phoneAndEmailDuplicate":{
+        "fullname": "John Doe",
+        "gender": "MALE",
+        "dob": "1990-01-01",
+        "phone": "087267162543",
+        "email": "johndoe@example.com",
+        "address": "Montana Avenue, Santa Monica"
+    },
+    "phoneOnlyDuplicate": {
+        "fullname": "John Doe",
+        "gender": "MALE",
+        "dob": "1990-01-01",
+        "phone": "087267162543",
+        "email": "johndoel@example.com",
+        "address": "Montana Avenue, Santa Monica"
+    },
+    "emailOnlyDuplicate": {
+        "fullname": "John Doe",
+        "gender": "MALE",
+        "dob": "1990-01-01",
+        "phone": "087267162544",
+        "email": "johndoe@example.com",
+        "address": "Montana Avenue, Santa Monica"
+    }
+}

@@ -1,0 +1,29 @@
+:root {
+    --primary-magenta: #d81b60;
+    --secondary-teal: #00bfa5;
+    --gradient-magenta-teal: linear-gradient(135deg, #d81b60 0%, #00bfa5 100%);
+    --gradient-hover: linear-gradient(135deg, #00bfa5 0%, #d81b60 100%);
+}
+
+/* Timpa warna tombol & elemen utama */
+.btn, .submit-btn2, #scrollUp, #back-top {
+    background: var(--gradient-magenta-teal) !important;
+    border: none !important;
+    color: #ffffff !important;
+}
+
+.btn::before {
+    background: var(--gradient-hover) !important;
+}
+
+.section-tittle span, .slider-area .hero__caption span {
+    color: var(--secondary-teal) !important;
+}
+
+.section-tittle span::before, .slider-area .hero__caption span::before {
+    background: var(--secondary-teal) !important;
+}
+
+.video-icon a, .blog_item_img .blog_item_date {
+    background: var(--gradient-magenta-teal) !important;
+}

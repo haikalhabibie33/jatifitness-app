@@ -1,0 +1,112 @@
+[
+  {
+    "code": "REG_DAILY",
+    "name": "Regular Daily Visit",
+    "price": 25000,
+    "duration_days": 1,
+    "is_active": true,
+    "daily_limit": 1,
+    "description": "Regular visit (non-student)",
+    "target_member_type": "REGULAR",
+    "audience_scope": "CASUAL_ONLY"
+  },
+  {
+    "code": "REG_MONTHLY",
+    "name": "Regular Per 1 Month",
+    "price": 150000,
+    "duration_days": 30,
+    "is_active": true,
+    "daily_limit": 3,
+    "description": "Monthly membership for regular",
+    "target_member_type": "REGULAR",
+    "audience_scope": "MEMBER_ONLY"
+  },
+  {
+    "code": "REG_QUARTERLY",
+    "name": "Regular Per 3 Month",
+    "price": 400000,
+    "duration_days": 90,
+    "is_active": true,
+    "daily_limit": 3,
+    "description": "Quarterly membership for regular",
+    "target_member_type": "REGULAR",
+    "audience_scope": "MEMBER_ONLY"
+  },
+  {
+    "code": "REG_BIANNUALLY",
+    "name": "Regular Per 6 Month",
+    "price": 700000,
+    "duration_days": 180,
+    "is_active": true,
+    "daily_limit": 3,
+    "description": "Biannually membership for regular",
+    "target_member_type": "REGULAR",
+    "audience_scope": "MEMBER_ONLY"
+  },
+  {
+    "code": "REG_YEARLY",
+    "name": "Regular Per 1 Year",
+    "price": 1300000,
+    "duration_days": 365,
+    "is_active": true,
+    "daily_limit": 3,
+    "description": "Yearly membership for regular",
+    "target_member_type": "REGULAR",
+    "audience_scope": "MEMBER_ONLY"
+  },
+  {
+    "code": "STU_DAILY",
+    "name": "Student Daily Visit",
+    "price": 20000,
+    "duration_days": 1,
+    "is_active": true,
+    "daily_limit": 1,
+    "description": "Student visit (non-regular)",
+    "target_member_type": "STUDENT",
+    "audience_scope": "CASUAL_ONLY"
+  },
+  {
+    "code": "STU_MONTHLY",
+    "name": "Student Per 1 Month",
+    "price": 125000,
+    "duration_days": 30,
+    "is_active": true,
+    "daily_limit": 3,
+    "description": "Monthly membership for student",
+    "target_member_type": "STUDENT",
+    "audience_scope": "MEMBER_ONLY"
+  },
+  {
+    "code": "STU_QUARTERLY",
+    "name": "Student Per 3 Month",
+    "price": 330000,
+    "duration_days": 90,
+    "is_active": true,
+    "daily_limit": 3,
+    "description": "Quarterly membership for student",
+    "target_member_type": "STUDENT",
+    "audience_scope": "MEMBER_ONLY"
+  },
+  {
+    "code": "STU_BIANNUALLY",
+    "name": "Student Per 6 Month",
+    "price": 650000,
+    "duration_days": 180,
+    "is_active": true,
+    "daily_limit": 3,
+    "description": "Biannually membership for student",
+    "target_member_type": "STUDENT",
+    "audience_scope": "MEMBER_ONLY"
+  },
+  {
+    "code": "STU_YEARLY",
+    "name": "Student Per 1 Year",
+    "price": 1150000,
+    "duration_days": 365,
+    "is_active": true,
+    "daily_limit": 3,
+    "description": "Yearly membership for student",
+    "target_member_type": "STUDENT",
+    "audience_scope": "MEMBER_ONLY"
+  }
+]

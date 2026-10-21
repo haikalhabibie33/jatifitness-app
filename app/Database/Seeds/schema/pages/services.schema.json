@@ -1,0 +1,13 @@
+{
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "type": "object",
+    "properties": {
+        "services_section_title": { "type": ["string", "null"] },
+        "services_hero_caption": { "type": ["string", "null"] },
+        "services_quality_equipment_desc": { "type": ["string", "null"] },
+        "services_health_caring_desc": { "type": ["string", "null"] },
+        "services_gym_strategies_desc": { "type": ["string", "null"] }
+
+    },
+    "additionalProperties": true
+}

@@ -1,0 +1,52 @@
+[
+    {
+        "author": "Bruce Lee",
+        "text": "Knowing is not enough, we must apply. Willing is not enough, we must do.",
+        "role": "Martial Artist"
+    },
+    {
+        "author": "Arnold Schwarzenegger",
+        "text": "The last three or four reps is what makes the muscle grow. This area of pain divides a champion from someone who is not a champion.",
+        "role": "Bodybuilder"
+    },
+    {
+        "author": "Jack LaLanne",
+        "text": "Exercise is king. Nutrition is queen. Put them together and you have a kingdom.",
+        "role": "Fitness Expert"
+    },
+    {
+        "author": "Jim Rohn",
+        "text": "Take care of your body. It's the only place you have to live.",
+        "role": "Entrepreneur"
+    },
+    {
+        "author": "Vince Lombardi",
+        "text": "The difference between a successful person and others is not a lack of strength, not a lack of knowledge, but rather a lack in will.",
+        "role": "Football Coach"
+    },
+    {
+        "author": "Serena Williams",
+        "text": "I really think a champion is defined not by their wins but by how they can recover when they fall.",
+        "role": "Tennis Player"
+    },
+    {
+        "author": "Michael Jordan",
+        "text": "I've failed over and over and over again in my life and that is why I succeed.",
+        "role": "Basketball Player"
+    },
+    {
+        "author": "Dwayne 'The Rock' Johnson",
+        "text": "Success isn't always about greatness. It's about consistency. Consistent hard work leads to success. Greatness will come.",
+        "role": "Actor and Former Wrestler"
+    },
+    {
+        "author": "Usain Bolt",
+        "text": "I don't think limits.",
+        "role": "Sprinter"
+    },
+    {
+        "author": "Simone Biles",
+        "text": "I would rather regret the risks that didn't work out than the chances I didn't take at all.",
+        "role": "Gymnast"
+    }
+]

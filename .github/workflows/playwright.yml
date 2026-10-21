@@ -1,0 +1,289 @@
+name: E2E Playwright Tests
+
+on:
+  pull_request:
+
+jobs:
+  e2e:
+    runs-on: ubuntu-latest
+
+    env:
+      APP_URL: http://localhost:8080
+      MEMBER_PATH: /membership/index
+
+    services:
+      mysql:
+        image: mysql:8
+        ports:
+          - 3306:3306
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: gym_app
+        options: >-
+          --health-cmd="mysqladmin ping -h 127.0.0.1 -proot"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+
+    steps:
+      # =========================
+      # CHECKOUT
+      # =========================
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # =========================
+      # PHP SETUP
+      # =========================
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.4
+          tools: composer:v2
+
+      # =========================
+      # COMPOSER CACHE
+      # =========================
+      - name: Get Composer cache directory
+        id: composer-cache
+        run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
+
+      - name: Cache Composer dependencies
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: composer-${{ runner.os }}-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            composer-${{ runner.os }}-
+
+      - name: Install PHP dependencies
+        run: composer install --no-interaction --prefer-dist --no-progress
+
+      - name: Optimize autoload
+        run: composer dump-autoload
+
+      - name: Inspect framework files
+        run: composer show codeigniter4/framework
+
+      # =========================
+      # ENV SETUP
+      # =========================
+      - name: Setup environment
+        run: cp .env.ci .env
+
+      - name: Fix writable permissions
+        run: chmod -R 777 writable
+
+      # =========================
+      # MYSQL CLIENT
+      # =========================
+      - name: Install MySQL client
+        run: sudo apt-get update && sudo apt-get install -y mysql-client
+
+      - name: Wait for MySQL
+        run: |
+          for i in {1..20}; do
+            if mysql -h127.0.0.1 -uroot -proot -e "SELECT 1"; then
+              echo "MySQL is ready"
+              exit 0
+            fi
+
+            echo "Waiting for MySQL..."
+            sleep 3
+          done
+
+          echo "MySQL did not become ready in time"
+          exit 1
+
+      # =========================
+      # DATABASE SETUP
+      # =========================
+      - name: Run migration
+        run: php ./spark migrate
+
+      - name: Seed PageSettings
+        run: php ./spark db:seed PageSettingsSeeder
+
+      - name: Seed Contact
+        run: php ./spark db:seed ContactSeeder
+
+      - name: Seed Quote
+        run: php ./spark db:seed QuoteSeeder
+
+      - name: Seed MembershipPlan
+        run: php ./spark db:seed MembershipPlanSeeder
+
+      - name: Seed User
+        run: php ./spark db:seed UserSeeder
+
+      # =========================
+      # START APPLICATION
+      # =========================
+      - name: Start CI4 server
+        run: |
+          php ./spark serve --host=0.0.0.0 --port=8080 > ci-server.log 2>&1 &
+          echo $! > ci-server.pid
+          sleep 2
+
+          echo "=== CI4 server process ==="
+          ps -p $(cat ci-server.pid) || true
+
+          echo "=== Initial server log ==="
+          cat ci-server.log || true
+
+      - name: Wait for CI4 server
+        run: |
+          for i in {1..30}; do
+            STATUS=$(curl -s -o /dev/null -w "%{http_code}" "$APP_URL$MEMBER_PATH" || true)
+
+            echo "Attempt: $i"
+            echo "HTTP status from $APP_URL$MEMBER_PATH: $STATUS"
+
+            if [ "$STATUS" != "000" ] && [ -n "$STATUS" ]; then
+              echo "CI4 server is reachable"
+              exit 0
+            fi
+
+            if [ -f ci-server.pid ]; then
+              if ! ps -p $(cat ci-server.pid) > /dev/null; then
+                echo "CI4 server process is no longer running"
+                echo "=== ci-server.log ==="
+                cat ci-server.log || true
+                exit 1
+              fi
+            fi
+
+            echo "Waiting for CI4 server..."
+            sleep 2
+          done
+
+          echo "CI4 server did not become reachable in time"
+          echo "=== ci-server.log ==="
+          cat ci-server.log || true
+          exit 1
+
+      # =========================
+      # DEBUG HTML & STATIC ASSETS
+      # =========================
+      - name: Fetch homepage HTML
+        run: |
+          HOME_STATUS=$(curl -sL -o ci-home.html -w "%{http_code}" "$APP_URL" || true)
+
+          echo "=== Homepage HTTP status ==="
+          echo "$HOME_STATUS"
+
+          echo "=== Search JS references in homepage ==="
+          grep -inE "main\.js|nice-select|niceSelect|jquery|slick|select2|assets/js" ci-home.html || true
+
+          echo "=== Homepage HTML file size ==="
+          wc -c ci-home.html || true
+
+      - name: Fetch member page HTML
+        run: |
+          MEMBER_STATUS=$(curl -sL -o ci-member.html -w "%{http_code}" "$APP_URL$MEMBER_PATH" || true)
+
+          echo "=== Member page HTTP status ==="
+          echo "$MEMBER_STATUS"
+
+          echo "=== Search JS references in member page ==="
+          grep -inE "main\.js|nice-select|niceSelect|jquery|slick|select2|assets/js" ci-member.html || true
+
+          echo "=== Member HTML file size ==="
+          wc -c ci-member.html || true
+
+      - name: Check JS asset paths
+        run: |
+          check_asset() {
+            URL="$1"
+            LABEL="$2"
+            STATUS=$(curl -sL -o /dev/null -w "%{http_code}" "$URL" || true)
+            echo "$LABEL => $STATUS => $URL"
+          }
+
+          echo "=== Check required JS assets ==="
+
+          check_asset "$APP_URL/assets/js/vendor/jquery-1.12.4.min.js" "jQuery"
+          check_asset "$APP_URL/assets/js/jquery.nice-select.min.js" "nice-select"
+          check_asset "$APP_URL/assets/js/main.js" "main.js"
+          check_asset "$APP_URL/assets/js/select2.min.js" "select2"
+          check_asset "$APP_URL/assets/js/show-hide-member-form.js" "show-hide-member-form"
+          check_asset "$APP_URL/assets/js/casual-member-form-handler.js" "casual-member-form-handler"
+
+      # =========================
+      # NODE & PLAYWRIGHT
+      # =========================
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Cache Playwright browsers
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            playwright-${{ runner.os }}-
+
+      - name: Install Node dependencies
+        run: npm ci
+
+      - name: Install Playwright chromium only
+        run: npx playwright install chromium --with-deps
+
+      # =========================
+      # RUN TEST
+      # =========================
+      - name: Run Playwright tests
+        run: npx playwright test
+
+      # =========================
+      # LOGS
+      # =========================
+      - name: Show CI server log
+        if: always()
+        run: |
+          echo "=== ci-server.log ==="
+          cat ci-server.log || true
+
+      - name: Show CodeIgniter logs
+        if: always()
+        run: |
+          echo "=== writable/logs ==="
+          ls -la writable/logs || true
+          for f in writable/logs/*; do
+            echo "---- $f ----"
+            cat "$f" || true
+          done
+
+      # =========================
+      # UPLOAD ARTIFACTS
+      # =========================
+      - name: Upload debug artifacts
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ci-debug-artifacts
+          path: |
+            ci-server.log
+            ci-server.pid
+            ci-home.html
+            ci-member.html
+            writable/logs/
+
+      - name: Upload Playwright HTML report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-html-report
+          path: playwright-report/
+          if-no-files-found: ignore
+
+      - name: Upload JUnit results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-junit-results
+          path: test-results/junit.xml
+          if-no-files-found: ignore

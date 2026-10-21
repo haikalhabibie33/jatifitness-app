@@ -1,0 +1,16 @@
+{
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "type": "object",
+    "properties": {
+        "contact_city" : { "type": ["string", "null"]},
+        "contact_street": { "type": ["string", "null"]},
+        "contact_phone": { "type": ["string", "null"]},
+        "contact_availableToPhone": { "type": ["string", "null"]},
+        "contact_email": { "type": ["string", "null"]},
+        "contact_emailMessage": { "type": ["string", "null"]},
+        "contact_facebook_url": { "type": ["string", "null"]},
+        "contact_tiktok_url": { "type": ["string", "null"]},
+        "contact_instagram_url": { "type": ["string", "null"]}
+    },
+    "additionalProperties": true
+}
